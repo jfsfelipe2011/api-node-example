@@ -1,0 +1,156 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Example Application API In Node",
+      "description": "Yet Another Node.js API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Persons",
+        "description": "API for persons in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/persons": {
+        "post": {
+          "tags": [
+            "Persons"
+          ],
+          "description": "Create new person in system",
+          "parameters": [
+            {
+              "name": "person",
+              "in": "body",
+              "description": "Person that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Person"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "New person is created",
+              "schema": {
+                "$ref": "#/definitions/Person"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Persons"
+          ],
+          "summary": "Get all persons in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Persons"
+              }
+            }
+          }
+        }
+      },
+      "/persons/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of person that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Persons"
+          ],
+          "summary": "Get person with given ID",
+          "responses": {
+            "200": {
+              "description": "Person is found",
+              "schema": {
+                "$ref": "#/definitions/Person"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete person with given ID",
+          "tags": [
+            "Persons"
+          ],
+          "responses": {
+            "200": {
+              "description": "Person is deleted"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update person with give ID",
+          "tags": [
+            "Persons"
+          ],
+          "parameters": [
+            {
+              "name": "person",
+              "in": "body",
+              "description": "Person with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Person"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Person is updated"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Person": {
+        "required": [
+          "name",
+          "age",
+          "gender"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer"
+          },
+          "gender": {
+            "type": "string",
+            "enum": ["Male", "Female", "Others"]
+          }
+        }
+      },
+      "Persons": {
+        "type": "array",
+        "$ref": "#/definitions/Person"
+      }
+    }
+  }

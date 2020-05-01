@@ -1,10 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const joi = require('@hapi/joi');
+const swaggerUI = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 let persons = [
     {
