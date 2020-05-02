@@ -1,0 +1,29 @@
+{
+  "name": "api-node-example",
+  "version": "1.0.0",
+  "description": "Esse é um repositório de uma API básica para uso de um exemplo de testes de Feature com Newman",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfsfelipe2011/api-node-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jfsfelipe2011/api-node-example/issues"
+  },
+  "homepage": "https://github.com/jfsfelipe2011/api-node-example#readme"
+}
