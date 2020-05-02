@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "9162da2f-fbea-410d-b800-2c6f7191476a",
+		"name": "api-node-example",
+		"description": "Essa é uma collection de teste com o newman e uma API em Node",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "HTTP 2xx",
+					"item": [
+						{
+							"name": "HTTP 201",
+							"item": [
+								{
+									"name": "Post - Create new Person",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "c92f6305-aa13-423d-964e-1e6ef5d3c8d9",
+												"exec": [
+													"const response = pm.response.json();",
+													"",
+													"pm.test('Response is a object', () => {",
+													"    pm.expect(response).to.be.an('object');",
+													"    pm.response.to.be.json;",
+													"});",
+													"",
+													"pm.test('Response is a valid schema', () => {",
+													"    pm.expect(response).to.have.property('name');",
+													"    pm.expect(response).to.have.property('age');",
+													"    pm.expect(response).to.have.property('gender');",
+													"});",
+													"",
+													"pm.test('Response return 201 code', () => {",
+													"    pm.response.to.have.status(201);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"Michel Nascimento\",\n\t\"age\": 22,\n\t\"gender\": \"Male\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/persons",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"persons"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "HTTP 4xx",
+					"item": [
+						{
+							"name": "HTTP 422",
+							"item": [
+								{
+									"name": "Post - Name required",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "abab7281-614d-4408-8e6b-0d12657558e5",
+												"exec": [
+													"const response = pm.response.json();",
+													"",
+													"pm.test('Response is a object', () => {",
+													"    pm.expect(response).to.be.an('object');",
+													"    pm.response.to.be.json;",
+													"});",
+													"",
+													"pm.test('Response return 422 code', () => {",
+													"    pm.response.to.have.status(422);",
+													"});",
+													"",
+													"pm.test('Return validate message', () => {",
+													"    pm.expect(response.details[0].message).to.equal('\\\"name\\\" is required');",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"age\": 22,\n\t\"gender\": \"Male\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/persons",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"persons"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
